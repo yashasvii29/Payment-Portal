@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
-import PortraitIcon from "@mui/icons-material/Portrait";
+// import PortraitIcon from "@mui/icons-material/Portrait";
 import ManIcon from "@mui/icons-material/Man";
 import payimg from "../../assets/payment.jpeg";
 import axios from "axios";
@@ -102,7 +102,7 @@ const Register = () => {
                   />
                 </div>
               </div>
-              <div className="mt-4 flex justify-center items-center">
+              {/* <div className="mt-4 flex justify-center items-center">
                 <div className="border-2 border-blue-200 rounded w-full py-2 px-4 text-gray-700 flex items-center">
                   <PortraitIcon className="pr-2" />
                   <input
@@ -114,7 +114,7 @@ const Register = () => {
                     required
                   />
                 </div>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="w-full mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
