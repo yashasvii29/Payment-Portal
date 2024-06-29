@@ -5,9 +5,10 @@ import payimg from "../../assets/payment.jpeg";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
+const ChangePassword = () => {
+  
   const [password, setPassword] = useState("");
+  const [changepassword, setChangepassword] = useState("");
   const navigate = useNavigate("");
 
   async function loginUser(data) {
@@ -26,8 +27,8 @@ const Login = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(email, password);
-    loginUser({ email, password });
+    console.log(changepassword, password);
+    loginUser({ password ,changepassword});
   };
 
   return (
@@ -35,28 +36,13 @@ const Login = () => {
       <div className="w-full max-w-4xl h-full md:h-5/6 bg-[#f7cad0] flex flex-col md:flex-row justify-center items-center rounded-xl p-4 md:p-8">
         <div className="w-full md:w-1/2 h-full md:h-5/6 bg-[#edafb8] rounded-2xl flex items-center justify-center p-4 md:p-8">
           <div className="w-full max-w-md bg-white rounded-3xl p-6 md:p-8">
-            <h1 className="text-center text-xl font-medium">Login</h1>
+            <h1 className="text-center text-xl font-medium">Change Password</h1>
             <form onSubmit={onSubmitHandler}>
               <div className="mt-5 flex justify-center items-center">
                 <div className="border-2 border-blue-200 rounded w-full py-2 px-4 text-gray-700 flex items-center">
                   <PersonIcon className="pr-2" />
                   <input
                     className="appearance-none leading-tight focus:outline-none w-full h-6"
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="example@gmail.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="mt-5 flex justify-center items-center">
-                <div className="border-2 rounded w-full py-2 px-4 text-gray-700 flex items-center">
-                  <LockIcon className="pr-2" />
-                  <input
-                    className="appearance-none leading-tight focus:outline-none w-full h-6 bg-white"
                     id="password"
                     name="password"
                     type="password"
@@ -67,25 +53,29 @@ const Login = () => {
                   />
                 </div>
               </div>
-              <div className="mt-2">
-                <span className="text-blue-600 underline">
-                    <Link to="/change">Forgot Password</Link>
-                </span>
+              <div className="mt-5 flex justify-center items-center">
+                <div className="border-2 rounded w-full py-2 px-4 text-gray-700 flex items-center">
+                  <LockIcon className="pr-2" />
+                  <input
+                    className="appearance-none leading-tight focus:outline-none w-full h-6 bg-white"
+                    id="newpassword"
+                    name="newpassword"
+                    type="password"
+                    placeholder="New Password"
+                    value={changepassword}
+                    onChange={(e) => setChangepassword(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
+              
               <button
                 type="submit"
                 className="w-full mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
-                Login
+                Change
               </button>
-              <div className="mt-6 text-center">
-                <span>
-                  No Account yet?{" "}
-                  <span className="text-blue-600 underline">
-                    <Link to="/register">Register</Link>
-                  </span>
-                </span>
-              </div>
+              
             </form>
           </div>
         </div>
@@ -97,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChangePassword;
