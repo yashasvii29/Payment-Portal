@@ -6,6 +6,7 @@ import Register from './components/Auth/Register'
 import Login from './components/Auth/Login '
 import Dashboard  from './components/Dashboard'
 import ChangePassword from './components/Auth/ChangePassword'
+import LearnMore from './components/LearnMore'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path='/register' element={<Register />} />
             <Route path='/' element={<Dashboard/>} />
             <Route path='/change' element={<ChangePassword/>} />
+            <Route path='/learn-more' element={<LearnMore/>} />
 
         </Routes>
       </BrowserRouter>
