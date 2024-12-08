@@ -13,7 +13,7 @@ const Dashboard = () => {
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link to="/" className="flex items-center">
               <img src={coin} className="mr-3 h-14" alt="Logo" />
-              <h1 className="pl-4 text-4xl font-bold">Payment</h1>
+              <h1 className="pl-4 text-4xl font-bold">TrustPay</h1>
             </Link>
             <div className="flex items-center lg:order-2">
               <Link

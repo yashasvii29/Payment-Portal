@@ -17,7 +17,7 @@ const Login = () => {
       localStorage.setItem('username', res.data.data.userDBInfo.username);
       localStorage.setItem('email', res.data.data.userDBInfo.email);
       localStorage.setItem('user', JSON.stringify(res.data.data.userDBInfo));
-      navigate("/chatroom");
+      navigate("/payment-page");
     } catch (error) {
       console.log("Error in login user:", error.message);
       navigate("/login");

@@ -7,6 +7,7 @@ import Login from './components/Auth/Login '
 import Dashboard  from './components/Dashboard'
 import ChangePassword from './components/Auth/ChangePassword'
 import LearnMore from './components/LearnMore'
+import Payment from './components/Payment'
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
             <Route path='/' element={<Dashboard/>} />
             <Route path='/change' element={<ChangePassword/>} />
             <Route path='/learn-more' element={<LearnMore/>} />
+            <Route path='/payment-page' element={<Payment/>} />
+            
 
         </Routes>
       </BrowserRouter>

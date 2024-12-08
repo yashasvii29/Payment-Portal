@@ -28,7 +28,7 @@ const Register = () => {
     try {
       const res = await axios.post("http://localhost:8080/register", data);
       console.log(res);
-      navigate("/payment");
+      navigate("/payment-page");
     } catch (e) {
       console.log("Error in registration: ", e.message);
       navigate("/register");
