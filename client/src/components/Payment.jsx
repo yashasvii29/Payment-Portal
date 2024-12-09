@@ -1,106 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
+
+// const Payment = () => {
+//   const navigate = useNavigate();
+
+//   return (
+//     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+//       <div className="bg-white p-8 rounded shadow-md w-full max-w-md text-center">
+//         <h1 className="text-2xl font-bold text-blue-600 mb-4">
+//           Welcome to the Payment Portal!
+//         </h1>
+//         <p className="text-gray-700 mb-6">
+//           Your account has been successfully created. You can now manage your payments, view transactions, and more.
+//         </p>
+//         <div className="space-y-4">
+//           <button
+//             onClick={() => navigate("/make-payment")}
+//             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+//           >
+//             Make a Payment
+//           </button>
+//           <button
+//             onClick={() => navigate("/transactions")}
+//             className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+//           >
+//             View Transactions
+//           </button>
+//           <button
+//             onClick={() => navigate("/profile")}
+//             className="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700"
+//           >
+//             Manage Profile
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Payment;
+
+
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
-  const [amount, setAmount] = useState('');
-  const [orderHistory, setOrderHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // Fetch order history on component load
-  useEffect(() => {
-    fetchOrderHistory();
-  }, []);
-
-  // Fetch order history from the backend
-  const fetchOrderHistory = async () => {
-    try {
-      const response = await axios.get('/api/orders'); // API to fetch user orders
-      setOrderHistory(response.data);
-    } catch (error) {
-      console.error('Error fetching order history:', error);
-    }
-  };
-
-  // Handle payment submission
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await axios.post('/api/pay', { amount }); // API for payment
-      alert('Payment Successful! Order ID: ' + response.data.orderId);
-      fetchOrderHistory(); // Refresh order history
-    } catch (error) {
-      console.error('Payment failed:', error);
-      alert('Payment Failed! Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-purple-500 text-white py-4 text-center">
-        <h1 className="text-3xl font-bold">User Dashboard</h1>
-        <p>Welcome! Manage your payments and orders here.</p>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex flex-col items-center justify-center">
+      {/* Card Container */}
+      <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-3xl">
+        {/* Header Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
+          <h1 className="text-3xl font-bold">Welcome to the Payment Portal!</h1>
+          <p className="text-lg mt-2">Your account has been successfully created.</p>
+        </div>
 
-      <main className="p-6">
-        {/* Payment Section */}
-        <section className="bg-white shadow-md rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4">Make a Payment</h2>
-          <form onSubmit={handlePayment} className="space-y-4">
-            <div>
-              <label className="block text-gray-700">Amount (USD)</label>
-              <input
-                type="number"
-                className="w-full border rounded-lg p-2"
-                placeholder="Enter amount"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                required
-              />
-            </div>
+        {/* Content Section */}
+        <div className="p-8 text-center space-y-6">
+          <p className="text-gray-700">
+            Start exploring your account by making a payment, viewing your transactions, or managing your profile.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="space-y-4">
+            
             <button
-              type="submit"
-              className="bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600"
-              disabled={loading}
+              onClick={() => navigate("/make-payment")}
+              className="w-full bg-blue-600 text-white py-3 rounded-lg shadow-lg hover:bg-blue-700 hover:scale-105 transform transition duration-300"
             >
-              {loading ? 'Processing...' : 'Pay Now'}
+              💳 Make a Payment
             </button>
-          </form>
-        </section>
+            <button
+              onClick={() => navigate("/transactions")}
+              className="w-full bg-green-600 text-white py-3 rounded-lg shadow-lg hover:bg-green-700 hover:scale-105 transform transition duration-300"
+            >
+              📜 View Transactions
+            </button>
+            <button
+              onClick={() => navigate("/profile")}
+              className="w-full bg-yellow-500 text-white py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:scale-105 transform transition duration-300"
+            >
+              🛠️ Manage Profile
+            </button>
+          </div>
+        </div>
 
-        {/* Order History Section */}
-        <section className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-4">Order History</h2>
-          {orderHistory.length === 0 ? (
-            <p className="text-gray-700">No orders found.</p>
-          ) : (
-            <ul className="space-y-4">
-              {orderHistory.map((order) => (
-                <li
-                  key={order._id}
-                  className="border rounded-lg p-4 flex justify-between"
-                >
-                  <div>
-                    <p className="font-bold">Order ID: {order._id}</p>
-                    <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
-                  </div>
-                  <div>
-                    <p className="font-bold">${order.amount.toFixed(2)}</p>
-                    <p>Status: {order.status}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </main>
-
-      <footer className="bg-purple-500 text-white text-center py-4">
-        &copy; 2024 Payment Portal. All rights reserved.
-      </footer>
+        {/* Footer Section */}
+        <div className="bg-gray-100 text-gray-600 p-4 text-sm text-center">
+          <p>Need help? <span className="text-blue-600 underline cursor-pointer">Contact Support</span></p>
+        </div>
+      </div>
     </div>
   );
 };

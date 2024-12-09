@@ -46,7 +46,7 @@ const ChangePassword = () => {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter your email Id"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
