@@ -16,6 +16,7 @@ const Login = () => {
       console.log(res.data.data.userDBInfo);
       localStorage.setItem('username', res.data.data.userDBInfo.username);
       localStorage.setItem('email', res.data.data.userDBInfo.email);
+      localStorage.setItem('gender', res.data.data.userDBInfo.gender);
       localStorage.setItem('user', JSON.stringify(res.data.data.userDBInfo));
       navigate("/payment-page");
     } catch (error) {
