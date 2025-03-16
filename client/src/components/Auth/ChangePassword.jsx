@@ -6,7 +6,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-  
   const [password, setPassword] = useState("");
   const [changepassword, setChangepassword] = useState("");
   const navigate = useNavigate("");
@@ -15,9 +14,13 @@ const ChangePassword = () => {
     try {
       const res = await axios.post("http://localhost:8080/login", data);
       console.log(res.data.data.userDBInfo);
-      localStorage.setItem('username', res.data.data.userDBInfo.username);
-      localStorage.setItem('email', res.data.data.userDBInfo.email);
-      localStorage.setItem('user', JSON.stringify(res.data.data.userDBInfo));
+      localStorage.setItem("username", res.data.data.userDBInfo.username);
+      localStorage.setItem("email", res.data.data.userDBInfo.email);
+      localStorage.setItem("user", JSON.stringify(res.data.data.userDBInfo));
+      localStorage.setItem(
+        "password",
+        JSON.stringify(res.data.data.changePassword)
+      );
       navigate("/chatroom");
     } catch (error) {
       console.log("Error in login user:", error.message);
@@ -28,7 +31,7 @@ const ChangePassword = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     console.log(changepassword, password);
-    loginUser({ password ,changepassword});
+    loginUser({ password, changepassword });
   };
 
   return (
@@ -68,19 +71,22 @@ const ChangePassword = () => {
                   />
                 </div>
               </div>
-              
+
               <button
                 type="submit"
                 className="w-full mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
                 Change
               </button>
-              
             </form>
           </div>
         </div>
         <div className="w-full md:w-1/2 h-full md:h-5/6 flex items-center justify-center p-4 md:p-8">
-          <img className="rounded-3xl w-full h-full object-cover" src={payimg} alt="Chatting" />
+          <img
+            className="rounded-3xl w-full h-full object-cover"
+            src={payimg}
+            alt="Chatting"
+          />
         </div>
       </div>
     </div>
