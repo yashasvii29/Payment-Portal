@@ -18,7 +18,7 @@ const Dashboard = () => {
             <div className="flex items-center lg:order-2">
               <Link
                 to="/login"
-               className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg"
+                className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg"
               >
                 Login
               </Link>
